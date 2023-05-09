@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <!--  Load Bootstrap CSS  -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <!--  Begin CSS  -->
+    <style>
+        button {
+            margin-top: 1.5em;
+            height: 2.25em;
+        }
+        header {
+            display: flex;
+            flex-direction: column;
+            height: 8em;
+            align-items: center;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;
+        }
+        table {
+            width: 75% !important;
+            margin-bottom: 2em;
+        }
+        table td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div th:object="${forecast}">
+        <header>
+            <h3>5 Day Forecast Details for <span th:utext="*{city.name}"></span>, <span th:utext="${state}"></span></h3>
+            <form th:action="@{/}" method="get">
+                <button type="submit" class="btn btn-secondary">check forecast for different city</button>
+            </form>
+        </header>
+        <main>
+            <table class="table table-hover mx-auto">
+                <thead>
+                    <tr>
+                        <th scope="col">Day</th>
+                        <th scope="col">Time (<span th:utext="${units == 'imperial'} ? 'UTC' : 'ISO'"></span>)</th>
+                        <th scope="col">Min (<span th:utext="${units == 'imperial'} ? '°F' : '°C'"></span>)</th>
+                        <th scope="col">Max (<span th:utext="${units == 'imperial'} ? '°F' : '°C'"></span>)</th>
+                        <th scope="col">Feels Like (<span th:utext="${units == 'imperial'} ? '°F' : '°C'"></span>)</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Humidity %</th>
+                        <th scope="col">Wind Speed (<span th:utext="${units == 'imperial'} ? 'miles/hr' : 'metres/s'"></span>)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="datum : *{list}">
+                    <td th:text="${#strings.substring(datum.dt_txt,6,11)}"></td>
+                    <td th:text="${#strings.substring(datum.dt_txt,11,16)}"></td>
+                    <td th:text="${datum.main.temp_min}"></td>
+                    <td th:text="${datum.main.temp_max}"></td>
+                    <td th:text="${datum.main.feels_like}"></td>
+                    <td th:text="${datum.weather[0].description}"></td>
+                    <td th:text="${datum.main.humidity}"></td>
+                    <td th:text="${datum.wind.speed}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <!--  Load Bootstrap JS  -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</body>
+</html>

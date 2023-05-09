@@ -2,7 +2,7 @@ package com.engstrom.weather.models;
 
 import java.util.List;
 
-public class DataPoint {
+public class Datum {
     public long dt;
     public Main main;
     public List<Weather> weather;
