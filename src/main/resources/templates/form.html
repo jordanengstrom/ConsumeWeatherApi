@@ -1,15 +1,16 @@
 <form th:action="@{/submit}" method="post" class="mt-5">
     <!--  Fields needed for GeocodedCity lookup  -->
     <div class="form-group">
-        <label for="city">City:</label>
+        <label for="city">City* <i type="button"  class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="enter city name" aria-hidden="false"></i></label>
         <input type="text" id="city" name="city" class="form-control">
+
     </div>
     <div class="form-group">
-        <label for="state">State:</label>
+        <label for="state">State <i type="button"  class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="only for the US" aria-hidden="false"></i></label>
         <input type="text" id="state" name="state" class="form-control">
     </div>
     <div class="form-group">
-        <label for="country">Country:</label>
+        <label for="country">Country* <i type="button"  class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Use ISO 3166 Alpha-2 code (exmples: US, IN, CA, GB, JP, MX, BR). Full spec here: https://www.iso.org/obp/ui/" aria-hidden="false"></i></label>
         <input type="text" id="country" name="country" class="form-control">
     </div>
 

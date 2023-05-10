@@ -33,7 +33,7 @@
 <body>
     <div th:object="${forecast}">
         <header>
-            <h3>5 Day Forecast Details for <span th:utext="*{city.name}"></span>, <span th:utext="${state}"></span></h3>
+            <h3>5 Day Forecast Details for <span th:utext="*{city.name}"></span>, <span th:utext="${state != ''} ? ${state} : ${country}"></span></h3>
             <form th:action="@{/}" method="get">
                 <button type="submit" class="btn btn-secondary">check forecast for different city</button>
             </form>

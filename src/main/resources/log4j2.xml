@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <!-- More info about exact expresssions used can be found here: -->
+            <!-- https://www.studytonight.com/post/log4j2-with-xml-configuration-java-example -->
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+        <!-- This file appender is provided as an example-->
+        <!--
+        <RollingFile name="File" fileName="logs/myapp.log"
+                     filePattern="logs/myapp-%d{yyyy-MM-dd}.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+        -->
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console" />
+            <!--
+            <AppenderRef ref="File" />
+            -->
+        </Root>
+    </Loggers>
+</Configuration>
+
