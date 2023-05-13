@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
@@ -43,6 +44,7 @@ public class WeatherController {
         return "redirect:/forecast";
     }
 
+    @Cacheable("forecast")
     @GetMapping("/forecast")
     public String forecast(@RequestParam String city, @RequestParam String state, @RequestParam String country,
                            @RequestParam String units, Model model) {
